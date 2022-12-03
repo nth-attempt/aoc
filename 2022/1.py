@@ -1,4 +1,5 @@
-inp1="""1000
+import heapq
+inp1 = """1000
 2000
 3000
 
@@ -2283,7 +2284,8 @@ print(max_calories(inp1))
 print(max_calories(inp2))
 
 # Part 2
-import heapq
+
+
 def sum_top3_calories(inp):
     lines = inp.splitlines()
     count = 0
@@ -2300,6 +2302,7 @@ def sum_top3_calories(inp):
     if len(h) > 3:
         heapq.heappop(h)
     return sum(h)
+
 
 print(sum_top3_calories(inp1))
 print(sum_top3_calories(inp2))
