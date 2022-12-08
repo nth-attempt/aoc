@@ -1131,6 +1131,8 @@ $ cd svgbqd
 $ ls
 69927 bjc.vdh"""
 
+import functools
+
 class Dir():
     def __init__(self, dir_name, parent_dir=None):
         self.dir_name = dir_name
@@ -1145,12 +1147,12 @@ class Dir():
         for sub_dir in self.sub_dirs.values():
             sub_dir.print_dir(level+1)
     
-    def file_size(self, level=0):
+    def file_size(self):
         total = 0
         for size, _ in self.files:
             total += int(size)
         for sub_dir in self.sub_dirs.values():
-            total += sub_dir.file_size(level)
+            total += sub_dir.file_size()
         return total
 
 def read_input(inp):
