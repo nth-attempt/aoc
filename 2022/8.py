@@ -173,6 +173,24 @@ def highest_score(inp):
                 if grid[r][cc] >= grid[r][c]: break
             res = max(res, left*right*top*bottom)
     return res
-    
+
 print(highest_score(inp1))
 print(highest_score(inp2))
+
+# With numpy
+
+import numpy as np
+def solve(inp):
+    grid = np.array([list(line) for line in inp.splitlines()], int)
+    part1 = np.zeros_like(grid)
+    part2 = np.ones_like(grid)
+    for _ in range(4):
+        for x, y in np.ndindex(grid.shape):
+            lower = [val < grid[x, y] for val in grid[x, y+1:]]
+            part1[x ,y] |= all(lower)
+            part2[x, y] *= next((i+1 for i, l in enumerate(lower) if ~l), len(lower))
+        grid, part1, part2 = map(np.rot90, (grid, part1, part2))
+    return part1.sum(), part2.max()
+
+print(solve(inp1))
+print(solve(inp2))
