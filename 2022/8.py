@@ -173,5 +173,6 @@ def highest_score(inp):
                 if grid[r][cc] >= grid[r][c]: break
             res = max(res, left*right*top*bottom)
     return res
+    
 print(highest_score(inp1))
 print(highest_score(inp2))
